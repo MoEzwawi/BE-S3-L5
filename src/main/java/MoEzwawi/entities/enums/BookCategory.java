@@ -1,6 +1,6 @@
 package MoEzwawi.entities.enums;
 
-public enum BookGenre {
+public enum BookCategory {
     SOCIAL_SCIENCES,
     NATURAL_SCIENCES,
     LITERATURE,

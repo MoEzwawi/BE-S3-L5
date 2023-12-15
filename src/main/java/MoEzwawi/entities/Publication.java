@@ -8,6 +8,8 @@ import java.util.List;
 @Table(name="publications")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name="type")
+@NamedQuery(name="findByExactTitle",query="SELECT p FROM Publication p WHERE p.title = :title")
+@NamedQuery(name="findByTitle",query="SELECT p FROM Publication p WHERE LOWER(p.title) LIKE LOWER(CONCAT('%', :searchQuery,'%'))")
 public abstract class Publication {
     @Id
     @Column(name="ISBN")

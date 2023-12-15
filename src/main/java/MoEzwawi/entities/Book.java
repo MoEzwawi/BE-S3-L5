@@ -1,6 +1,6 @@
 package MoEzwawi.entities;
 
-import MoEzwawi.entities.enums.BookGenre;
+import MoEzwawi.entities.enums.BookCategory;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -12,15 +12,15 @@ import java.time.LocalDate;
 @DiscriminatorValue("book")
 public class Book extends Publication{
     private String author;
-    private BookGenre genre;
+    private BookCategory category;
     public Book(){
 
     }
 
-    public Book(String isbn, String title, LocalDate publicationDate, int numberOfPages, String author, BookGenre genre) {
+    public Book(String isbn, String title, LocalDate publicationDate, int numberOfPages, String author, BookCategory category) {
         super(isbn, title, publicationDate, numberOfPages);
         this.author = author;
-        this.genre = genre;
+        this.category = category;
     }
 
     public String getAuthor() {
@@ -31,19 +31,19 @@ public class Book extends Publication{
         this.author = author;
     }
 
-    public BookGenre getGenre() {
-        return genre;
+    public BookCategory getCategory() {
+        return category;
     }
 
-    public void setGenre(BookGenre genre) {
-        this.genre = genre;
+    public void setCategory(BookCategory category) {
+        this.category = category;
     }
 
     @Override
     public String toString() {
         return "Book{" +
                 "author='" + author + '\'' +
-                ", genre=" + genre +
+                ", category=" + category +
                 ", title='" + title + '\'' +
                 '}';
     }

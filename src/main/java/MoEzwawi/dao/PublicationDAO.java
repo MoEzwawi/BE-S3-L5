@@ -1,10 +1,15 @@
 package MoEzwawi.dao;
 
+import MoEzwawi.entities.Book;
+import MoEzwawi.entities.Journal;
 import MoEzwawi.entities.Publication;
-import MoEzwawi.entities.User;
+import MoEzwawi.entities.enums.BookCategory;
+import MoEzwawi.entities.enums.JournalFrequency;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class PublicationDAO {
     private final EntityManager em;
@@ -13,7 +18,7 @@ public class PublicationDAO {
         this.em = em;
     }
 
-    public void save(Publication publication){
+    public void addToLibrary(Publication publication){
         EntityTransaction transaction = this.em.getTransaction();
         transaction.begin();
         em.persist(publication);
@@ -43,5 +48,41 @@ public class PublicationDAO {
         } catch (IllegalArgumentException | NullPointerException e){
             System.err.println("User n° "+isbn+" not found");
         }
+    }
+    public List<Book> findBooksByAuthor(String author){
+        TypedQuery<Book> tq = this.em.createQuery("SELECT b FROM Book b WHERE LOWER(b.author) = LOWER(:author)", Book.class);
+        tq.setParameter("author",author);
+        return tq.getResultList();
+    }
+    public List<Journal> findJournalsByFrequency(JournalFrequency f){
+        TypedQuery<Journal> tq = this.em.createQuery("SELECT j FROM Journal j WHERE j.frequency = :f", Journal.class);
+        tq.setParameter("f",f);
+        return tq.getResultList();
+    }
+    public List<Publication> getPublicationsByYearOfPublication(int year){
+        TypedQuery<Publication> tq = this.em.createQuery("SELECT p FROM Publication p WHERE EXTRACT(YEAR FROM p.publicationDate) = :year", Publication.class);
+        tq.setParameter("year",year);
+        return tq.getResultList();
+    }
+    public List<Book> getBooksByCategory(BookCategory category){
+        TypedQuery<Book> tq = this.em.createQuery("SELECT b FROM Book b WHERE b.category = :category",Book.class);
+        tq.setParameter("category",category);
+        return tq.getResultList();
+    }
+    public List<Book> getBooksByCategoryAndYear(BookCategory category, int year){
+        TypedQuery<Book> tq = this.em.createQuery("SELECT b FROM Book b WHERE b.category = :category AND EXTRACT(YEAR FROM b.publicationDate) = :year", Book.class);
+        tq.setParameter("category",category);
+        tq.setParameter("year",year);
+        return tq.getResultList();
+    }
+    public List<Publication> findByExactTitle(String title){
+        TypedQuery<Publication> tq = this.em.createNamedQuery("findByExactTitle", Publication.class);
+        tq.setParameter("title",title);
+        return tq.getResultList();
+    }
+    public List<Publication> findByTitle(String searchQuery){
+        TypedQuery<Publication> tq = this.em.createNamedQuery("findByTitle", Publication.class);
+        tq.setParameter("searchQuery",searchQuery);
+        return tq.getResultList();
     }
 }
