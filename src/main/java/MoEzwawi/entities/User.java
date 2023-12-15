@@ -28,11 +28,12 @@ public class User {
     public User(String name, String surname, LocalDate dateOfBirth) {
         this.name = name;
         this.surname = surname;
-            if (dateOfBirth.isAfter(LocalDate.now().minusYears(18))) {
-                this.dateOfBirth = dateOfBirth;
-            } else {
-                throw new IllegalArgumentException("The library users must be of legal age.");
-            }
+        LocalDate minimumDateOfBirth = LocalDate.now().minusYears(18);
+        if (dateOfBirth.isBefore(minimumDateOfBirth)) {
+            this.dateOfBirth = dateOfBirth;
+        } else {
+            throw new IllegalArgumentException("The library users must be of legal age.");
+        }
     }
 
     public long getCardNumber() {

@@ -2,15 +2,14 @@ package MoEzwawi.entities;
 
 import MoEzwawi.entities.enums.JournalFrequency;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name="journals")
 @DiscriminatorValue("journal")
 public class Journal extends Publication{
+    @Enumerated(EnumType.STRING)
     private JournalFrequency frequency;
     public Journal(){
 

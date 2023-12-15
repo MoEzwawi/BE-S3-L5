@@ -2,9 +2,7 @@ package MoEzwawi.entities;
 
 import MoEzwawi.entities.enums.BookCategory;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -12,6 +10,7 @@ import java.time.LocalDate;
 @DiscriminatorValue("book")
 public class Book extends Publication{
     private String author;
+    @Enumerated(EnumType.STRING)
     private BookCategory category;
     public Book(){
 

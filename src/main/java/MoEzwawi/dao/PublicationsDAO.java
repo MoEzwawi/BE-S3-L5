@@ -11,10 +11,10 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class PublicationDAO {
+public class PublicationsDAO {
     private final EntityManager em;
 
-    public PublicationDAO(EntityManager em) {
+    public PublicationsDAO(EntityManager em) {
         this.em = em;
     }
 
@@ -31,6 +31,30 @@ public class PublicationDAO {
             found = em.find(Publication.class, isbn);
             if (found == null){
                 throw new IllegalArgumentException("Publication n° "+isbn+" not found");
+            }
+        } catch (IllegalArgumentException e){
+            System.err.println(e);
+        }
+        return found;
+    }
+    public Book findBookByISBN(String isbn){
+        Book found = null;
+        try {
+            found = em.find(Book.class, isbn);
+            if (found == null){
+                throw new IllegalArgumentException("Book n° "+isbn+" not found");
+            }
+        } catch (IllegalArgumentException e){
+            System.err.println(e);
+        }
+        return found;
+    }
+    public Journal findJournalByISBN(String isbn){
+        Journal found = null;
+        try {
+            found = em.find(Journal.class, isbn);
+            if (found == null){
+                throw new IllegalArgumentException("Journal n° "+isbn+" not found");
             }
         } catch (IllegalArgumentException e){
             System.err.println(e);

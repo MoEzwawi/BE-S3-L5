@@ -1,10 +1,11 @@
 package MoEzwawi.dao;
 
 import MoEzwawi.entities.LibraryLoan;
-import MoEzwawi.entities.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class LibraryLoansDAO {
     private final EntityManager em;
@@ -42,5 +43,14 @@ public class LibraryLoansDAO {
         } catch (IllegalArgumentException | NullPointerException e){
             System.err.println("User n° "+loanId+" not found");
         }
+    }
+    public List<LibraryLoan> getLoansByUserCardNumber(long cardNumber){
+        TypedQuery<LibraryLoan> tq = this.em.createNamedQuery("getLoansByUserCardNumber", LibraryLoan.class);
+        tq.setParameter("cardNumber",cardNumber);
+        return tq.getResultList();
+    }
+    public List<LibraryLoan> getOverdueUnreturnedLoans(){
+        TypedQuery<LibraryLoan> tq = this.em.createQuery("SELECT l FROM LibraryLoan l WHERE l.dueDate < CURRENT_DATE() AND l.returnDate IS NULL", LibraryLoan.class);
+        return tq.getResultList();
     }
 }

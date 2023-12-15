@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5562296b-8100-4a5e-8c2b-8e08059a0dbf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/MoEzwawi/entities/LibraryLoan.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/MoEzwawi/DateParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MoEzwawi/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MoEzwawi/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MoEzwawi/entities/Publication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MoEzwawi/entities/Publication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MoEzwawi/dao/PublicationDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MoEzwawi/dao/PublicationsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MoEzwawi/entities/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MoEzwawi/entities/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MoEzwawi/entities/Journal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MoEzwawi/entities/Journal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MoEzwawi/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MoEzwawi/entities/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
