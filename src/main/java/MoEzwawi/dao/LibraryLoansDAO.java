@@ -1,6 +1,7 @@
 package MoEzwawi.dao;
 
 import MoEzwawi.entities.LibraryLoan;
+import MoEzwawi.entities.Publication;
 import MoEzwawi.entities.User;
 
 import javax.persistence.EntityManager;
@@ -45,12 +46,12 @@ public class LibraryLoansDAO {
             System.err.println("User n° "+loanId+" not found");
         }
     }
-    public List<LibraryLoan> getLoansByUserCardNumber(long cardNumber){
+    public List<Publication> getLoanedItemsByUserCardNumber(long cardNumber){
         UsersDAO usersDAO = new UsersDAO(em);
         User found = usersDAO.findByCardNumber(cardNumber);
         TypedQuery<LibraryLoan> tq = this.em.createQuery("SELECT l FROM LibraryLoan l WHERE l.user = :found AND  l.returnDate IS NULL", LibraryLoan.class);
         tq.setParameter("found",found);
-        return tq.getResultList();
+        return tq.getResultList().stream().map(LibraryLoan::getPublication).toList();
     }
     public List<LibraryLoan> getOverdueUnreturnedLoans(){
         TypedQuery<LibraryLoan> tq = this.em.createQuery("SELECT l FROM LibraryLoan l WHERE l.dueDate < CURRENT_DATE() AND l.returnDate IS NULL", LibraryLoan.class);

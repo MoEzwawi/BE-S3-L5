@@ -89,7 +89,7 @@ public class Application {
 
         /*LibraryLoan l1 = new LibraryLoan(aldoDB,hp1DB,LocalDate.now());
         loanDAO.save(l1);*/
-        System.out.println("loan: "+loanDAO.getLoansByUserCardNumber(5));
+        System.out.println("loan: "+loanDAO.getLoanedItemsByUserCardNumber(5));
 
     }
 }
