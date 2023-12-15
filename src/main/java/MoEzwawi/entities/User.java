@@ -1,5 +1,8 @@
 package MoEzwawi.entities;
 
+import net.bytebuddy.implementation.bytecode.Throw;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -15,8 +18,22 @@ public class User {
     private String surname;
     @Column(name="date_of_birth")
     private LocalDate dateOfBirth;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
     private List<LibraryLoan> listOfLoans;
+
+    public User(){
+
+    }
+
+    public User(String name, String surname, LocalDate dateOfBirth) {
+        this.name = name;
+        this.surname = surname;
+            if (dateOfBirth.isAfter(LocalDate.now().minusYears(18))) {
+                this.dateOfBirth = dateOfBirth;
+            } else {
+                throw new IllegalArgumentException("The library users must be of legal age.");
+            }
+    }
 
     public long getCardNumber() {
         return cardNumber;

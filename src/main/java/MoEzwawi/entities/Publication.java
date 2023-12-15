@@ -17,7 +17,7 @@ public abstract class Publication {
     protected LocalDate publicationDate;
     @Column(name="pages")
     protected int numberOfPages;
-    @OneToMany(mappedBy = "publication")
+    @OneToMany(mappedBy = "publication",cascade = CascadeType.REMOVE)
     private List<LibraryLoan> loanHistory;
     public Publication(){
 
