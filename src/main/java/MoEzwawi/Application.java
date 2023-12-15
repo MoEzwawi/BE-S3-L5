@@ -87,7 +87,9 @@ public class Application {
         Journal scienceDB = pubDAO.findJournalByISBN("978-5-678901-23-2");
         Journal topWebDevDB = pubDAO.findJournalByISBN("978-5-678901-23-3");
 
-        LibraryLoan l1 = new LibraryLoan(aldoDB,hp1DB,LocalDate.now());
-        loanDAO.save(l1);
+        /*LibraryLoan l1 = new LibraryLoan(aldoDB,hp1DB,LocalDate.now());
+        loanDAO.save(l1);*/
+        System.out.println("loan: "+loanDAO.getLoansByUserCardNumber(5));
+
     }
 }

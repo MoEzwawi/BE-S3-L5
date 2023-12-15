@@ -5,7 +5,6 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name="loan_record")
-@NamedQuery(name="getLoansByUserCardNumber",query="SELECT l FROM LibraryLoan l WHERE l.user.getCardNumber() = :cardNumber AND  l.returnDate IS NULL")
 public class LibraryLoan {
     @Id
     @GeneratedValue
