@@ -2,6 +2,7 @@ package MoEzwawi.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -14,6 +15,8 @@ public class User {
     private String surname;
     @Column(name="date_of_birth")
     private LocalDate dateOfBirth;
+    @OneToMany(mappedBy = "user")
+    private List<LibraryLoan> listOfLoans;
 
     public long getCardNumber() {
         return cardNumber;
@@ -41,6 +44,10 @@ public class User {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public List<LibraryLoan> getListOfLoans() {
+        return listOfLoans;
     }
 
     @Override

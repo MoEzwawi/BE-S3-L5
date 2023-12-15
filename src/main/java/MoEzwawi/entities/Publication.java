@@ -2,6 +2,7 @@ package MoEzwawi.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name="publications")
@@ -16,6 +17,8 @@ public abstract class Publication {
     protected LocalDate publicationDate;
     @Column(name="pages")
     protected int numberOfPages;
+    @OneToMany(mappedBy = "publication")
+    private List<LibraryLoan> loanHistory;
     public Publication(){
 
     }
@@ -53,6 +56,10 @@ public abstract class Publication {
 
     public void setNumberOfPages(int numberOfPages) {
         this.numberOfPages = numberOfPages;
+    }
+
+    public List<LibraryLoan> getLoanHistory() {
+        return loanHistory;
     }
 
     @Override

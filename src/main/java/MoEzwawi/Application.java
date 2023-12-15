@@ -8,7 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class Application {
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("events_management");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("library_database");
     private static Logger logger = LoggerFactory.getLogger(Application.class);
 
     public static void main(String[] args) {
